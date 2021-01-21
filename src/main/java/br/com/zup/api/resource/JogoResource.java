@@ -1,6 +1,7 @@
 package br.com.zup.api.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,8 @@ public class JogoResource {
 	}
 	
 	@GetMapping("/apostas")
-	public String buscarApostas(@RequestParam String email) {
-		return email;
+	public ResponseEntity<?> buscarApostas(@RequestParam String email, Pageable pageable) {
+		return ResponseEntity.ok(jogoService.listarPorEmail(email, pageable));
 	}
 
 }
