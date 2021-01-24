@@ -1,15 +1,18 @@
 package br.com.zup.api.util;
 
-import java.util.UUID;
+import java.util.Random;
 
 public class JogoUtil {
-	
+
 	public static String gerar(int tamanho) {
-		String codigo = String.valueOf(UUID.randomUUID().getMostSignificantBits());
-		codigo = codigo.replace("-", "");
-		codigo = codigo.substring(0, tamanho);
+		String numero = "";
+		Random gerador = new Random();
+
+		for (int i = 0; i < tamanho; i++) {
+			numero += gerador.nextInt(99) + "-";
+		}
 		
-		return codigo;
+		return numero.substring(0, numero.length() - 1);
 	}
 
 }

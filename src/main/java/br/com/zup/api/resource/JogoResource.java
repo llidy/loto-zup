@@ -1,5 +1,7 @@
 package br.com.zup.api.resource;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -17,10 +19,11 @@ import br.com.zup.api.service.JogoService;
 @RequestMapping(value = "/api/v1")
 public class JogoResource {
 	
-	@Autowired private JogoService jogoService;
+	@Autowired
+	private JogoService jogoService;
 	
 	@PostMapping("/jogos")
-	public ResponseEntity<?> jogar(@RequestBody JogoRequest jogoRequest) {
+	public ResponseEntity<?> jogar(@Valid @RequestBody JogoRequest jogoRequest) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(jogoService.jogar(jogoRequest.getEmail()));
 	}
 	
